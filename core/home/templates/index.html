@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block start %}
+   <div class="nav navbar">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+   </div>
+    <table class="table table-dark border border-primary">
+        <tr>
+            <th>Sr no</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>city</th>
+            <th>vote</th>
+        </tr>
+        {% for person in people %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.city}}</td>
+            <td {% if person.age <= 18 %} class="bg-danger" {% endif %}>
+                {% if person.age >= 18 %}
+                👍
+                {% else %}
+                👎
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p class="container-md">
+        {{text|truncatechars:10}}
+    </p>
+    <hr>
+    <p class="container-md">
+        {% for i in fruits %}
+        {{i}}
+        {% endfor %}
+        <br>
+        {% if "apple" in fruits %}
+        yes
+        {% else %}
+        no
+        {% endif %}
+    </p>
+ {% endblock %}
