@@ -25,10 +25,15 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('',home,name='home'),
     path('contact/',contact,name='contact'),
+    path('delete_recipe/<int:id>/',delete_recipe,name='delete_recipe'),
+    path('update_recipe/<int:id>/',update_recipe,name='update_recipe'),
     path('about/',about,name='about'),
+    path('login/',loginPage,name='loginPage'),
+    path('register/',RegisterPage,name='registerPage'),
     path('recipes/', recipes, name='recipes'),
     path('success/', success_page, name='success'),
     path('admin/', admin.site.urls),
+    path('logout/', logoutPage, name='logoutPage'),
 ]
 
 if settings.DEBUG:

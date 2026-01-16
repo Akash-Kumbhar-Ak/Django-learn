@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block start %}
+<!-- <div class="nav navbar">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+   </div> -->
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data" class="container-md col-6 mx-auto card p-4 shadow-lg mt-5">
+
+        <h2 class="text-center text-uppercase font-monospace">Login</h2>
+        <hr>
+        {% csrf_token %}
+        <!-- ------------------------------------------ -->
+        {% if messages %}
+        <div class="alert alert-success" role="alert">
+             {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <!-- ------------------------------------------ -->
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">User Name</label>
+            <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div>
+            <p>Don't have account <a href="/register/">Register</a></p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+</div>
+<hr>
+
+
+
+
+
+{% endblock %}
