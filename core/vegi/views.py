@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 # Create your views here.
 @login_required(login_url="/login/")
 def recipes(request):
@@ -114,3 +115,31 @@ def RegisterPage(request):
 
 
     return render(request,'register.html') 
+
+
+from django.db.models import Q
+
+def get_student(request):
+    students = Student.objects.all()
+
+    if request.GET.get('search'):
+        student=request.GET.get('search')
+        students=students.filter(
+            Q(student_name__icontains=student) |
+            Q(department__department__icontains=student) |
+            Q(student_id__student_id__icontains=student) |
+            Q(student_email__icontains=student) |
+            Q(student_age__icontains=student) 
+        )
+
+
+    paginator = Paginator(students, 10)  # Show 25 students per page
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'students': page_obj
+    }
+
+    return render(request, 'report/students.html', context)

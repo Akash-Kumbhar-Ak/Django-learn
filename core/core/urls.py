@@ -34,6 +34,7 @@ urlpatterns = [
     path('success/', success_page, name='success'),
     path('admin/', admin.site.urls),
     path('logout/', logoutPage, name='logoutPage'),
+    path('students/', get_student, name='get_student'),
 ]
 
 if settings.DEBUG:
